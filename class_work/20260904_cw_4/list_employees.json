@@ -1,0 +1,38 @@
+[
+    {
+        "first_name": "Alice",
+        "last_name": "Smith",
+        "email": "alice@yahoo.com",
+        "hire_date": "2010-03-01",
+        "salary": 70000,
+        "address": {
+            "city": "Boston",
+            "street": "Main St",
+            "house_number": "10"
+        }
+    },
+    {
+        "first_name": "Bob",
+        "last_name": "Brown",
+        "email": "bob@company.com",
+        "hire_date": "2024-07-15",
+        "salary": 62000,
+        "address": {
+            "city": "Chicago",
+            "street": "Lake Ave",
+            "house_number": "5A"
+        }
+    },
+    {
+        "first_name": "Carla",
+        "last_name": "Nguyen",
+        "email": "carla.nguyen@gmail.com",
+        "hire_date": "2019-11-20",
+        "salary": 55000,
+        "address": {
+            "city": "Seattle",
+            "street": "Pine St",
+            "house_number": "77"
+        }
+    }
+]
