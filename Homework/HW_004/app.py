@@ -41,7 +41,7 @@ class Product(Base):
 
 
 # Файл базы данных
-engine = create_engine('sqlite:///shop.sqlite', echo=False)
+engine = create_engine('sqlite:///shop2.sqlite', echo=False)
 Base.metadata.drop_all(engine)  # Сбрасываем старые таблицы для чистоты тестов
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
@@ -54,8 +54,9 @@ with Session() as session:
     el = Category(name="Электроника", description="Гаджеты и устройства.")
     books = Category(name="Книги", description="Печатные книги и электронные книги.")
     clothes = Category(name="Одежда", description="Одежда для мужчин и женщин.")
+    sport = Category(name="Спорттовары", description="Товары для спорта.")
 
-    session.add_all([el, books, clothes])
+    session.add_all([el, books, clothes, sport])
     session.flush()  # Получаем ID категорий из базы данных
 
     # Создаем продукты и привязываем их через category_id
@@ -102,9 +103,10 @@ print("-" * 50)
 print("[ Задача 4 ]: Количество продуктов в каждой категории:")
 with Session() as session:
     # Соединяем продукт с категорией, группируем по имени категории и считаем количество ID продуктов
+    # Используем .outerjoin() вместо .join()
     query = (
         select(Category.name, func.count(Product.id).label('total_products'))
-        .join(Product)
+        .outerjoin(Product) # Гарантирует, что пустые категории тоже попадут в отчет
         .group_by(Category.name)
     )
     for row in session.execute(query):
